@@ -1,32 +1,38 @@
-scanButton.addEventListener("click", async () => {
-  log("User clicked scan button");
-
-  try {
+async function readTag() {
+  if ("NDEFReader" in window) {
     const ndef = new NDEFReader();
-    await ndef.scan();
-    log("> Scan started");
-
-    ndef.addEventListener("readingerror", () => {
-      log("Argh! Cannot read data from the NFC tag. Try another one?");
-    });
-
-    ndef.addEventListener("reading", ({ message, serialNumber }) => {
-      log(`> Serial Number: ${serialNumber}`);
-      log(`> Records: (${message.records.length})`);
-    });
-  } catch (error) {
-    log("Argh! " + error);
+    try {
+      await ndef.scan();
+      ndef.onreading = event => {
+        const decoder = new TextDecoder();
+        for (const record of event.message.records) {
+          consoleLog("Record type:  " + record.recordType);
+          consoleLog("MIME type:    " + record.mediaType);
+          consoleLog("=== data ===\n" + decoder.decode(record.data));
+        }
+      }
+    } catch(error) {
+      consoleLog(error);
+    }
+  } else {
+    consoleLog("Web NFC is not supported.");
   }
-});
+}
 
-writeButton.addEventListener("click", async () => {
-  log("User clicked write button");
-
-  try {
+async function writeTag() {
+  if ("NDEFReader" in window) {
     const ndef = new NDEFReader();
-    await ndef.write("Hello world!");
-    log("> Message written");
-  } catch (error) {
-    log("Argh! " + error);
+    try {
+      await ndef.write("What Web Can Do Today");
+      consoleLog("NDEF message written!");
+    } catch(error) {
+      consoleLog(error);
+    }
+  } else {
+    consoleLog("Web NFC is not supported.");
   }
-});
+}
+
+function consoleLog(data) {
+  var logElement = document.getElementById('log');
+  logElement.innerHTML += data + '\n';
