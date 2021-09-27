@@ -1,11 +1,113 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>bear's web experiments</title>
-    </head>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
 
-    <body>
-        <p>Hello, world</p>
-        <iframe src="http://www.twitch.tv/shiryouko_channel/embed" frameborder="0" scrolling="no" height="378" width="620"></iframe><a href="http://www.twitch.tv/shiryouko_channel?tt_medium=live_embed&tt_content=text_link" style="padding:2px 0px 4px; display:block; width:345px; font-weight:normal; font-size:10px;text-decoration:underline;">Watch live video from SHIRYOUKO_CHANNEL on www.twitch.tv</a></iframe>
-    </body>
+<h2>HTML Forms</h2>
+
+  <label>Laboratory Number</label>
+  
+  <select id="labNo" name="labNo">
+   <option value="lab=1">Lab01 Instruments-DC</option>
+   <option value="lab=2">Lab02 Instruments-AC</option>
+   <option value="lab=3">Lab03 Basic Component</option>
+   <option value="lab=4">Lab04 Operational Amplifier</option>
+   <option value="lab=5">Lab05 Simulation-LTspice (Lab at home)</option>
+   <option value="lab=6">Lab06 Diode</option>
+   <option value="lab=7">Lab07 Multivibrator</option>
+   <option value="lab=8">Lab08 DC-DC Converter</option>
+   <option value="lab=9">Lab09 IR Transmitter and Receiver</option>
+  </select><br><br>
+  
+  
+  <p> Experiment status</p>
+  
+	<input type="checkbox" id="exp1" name="exp1" value="exp1=na">
+	<label for="exp1">Experiment1 done</label><br><br>
+	
+	<input type="checkbox" id="exp2" name="exp2" value="exp2=na">
+	<label for="exp2">Experiment2 done</label><br><br>
+	
+	<input type="checkbox" id="exp3" name="exp3" value="exp3=na">
+	<label for="exp3">Experiment3 done</label><br><br>
+	
+	<input type="checkbox" id="exp4" name="exp4" value="exp4=na">
+	<label for="exp4">Experiment4 done</label><br><br>
+	
+	<input type="checkbox" id="exp5" name="exp5" value="exp5=na">
+	<label for="exp5">Experiment5 done</label><br><br>
+	
+	<input type="checkbox" id="exp6" name="exp6" value="exp6=na">
+	<label for="exp6">Experiment6 done</label><br><br>
+
+<script>
+function myFunction() {
+	var id = 'exp1';
+	var object = document.getElementById(id);
+	
+	if(object.checked)
+		object.value = id + '=1';
+	else
+		object.value = id + '=na';
+
+	id = 'exp2';
+	object = document.getElementById(id);
+	if(object.checked)
+		object.value = id + '=1';
+	else
+		object.value = id + '=na';
+	
+	id = 'exp3';
+	object = document.getElementById(id);
+	if(object.checked)
+		object.value = id + '=1';
+	else
+		object.value = id + '=na';	
+	
+	id = 'exp4';
+	object = document.getElementById(id);
+	if(object.checked)
+		object.value = id + '=1';
+	else
+		object.value = id + '=na';	
+
+	id = 'exp5';
+	object = document.getElementById(id);
+	if(object.checked)
+		object.value = id + '=1';
+	else
+		object.value = id + '=na';
+
+	id = 'exp6';
+	object = document.getElementById(id);
+	if(object.checked)
+		object.value = id + '=1';
+	else
+		object.value = id + '=na';	
+
+		
+	document.getElementById('demo').innerHTML = document.getElementById('labNo').value 
+	                                          + '&' + document.getElementById('exp1').value
+	                                          + '&' + document.getElementById('exp2').value
+											  + '&' + document.getElementById('exp3').value
+											  + '&' + document.getElementById('exp4').value
+											  + '&' + document.getElementById('exp5').value
+											  + '&' + document.getElementById('exp6').value
+	}
+</script>
+
+
+
+
+<button type="button"
+onclick="myFunction()">
+Click me to display first name.</button>
+
+<p id="demo"></p>
+
+
+</body>
 </html>
+
