@@ -1,32 +1,113 @@
----
-feature_name: Web NFC
-chrome_version: 89
-feature_id: 6261030015467520
-check_min_version: true
----
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
 
-<h3>Background</h3>
-<p>
-Web NFC aims to provide sites the ability to read and write to NFC tags when
-they are brought in close proximity to the user’s device (usually 5-10 cm, 2-4
-inches). The current scope is limited to NDEF, a lightweight binary message
-format. Low-level I/O operations (e.g. ISO-DEP, NFC-A/B, NFC-F) and Host-based
-Card Emulation (HCE) are not supported within the current scope.
-</p>
+<h2>HTML Forms</h2>
 
-<button id="scanButton">Scan</button>
-<button id="writeButton">Write</button>
-
-{% include output_helper.html initial_output_content=initial_output_content %}
+  <label>Laboratory Number</label>
+  
+  <select id="labNo" name="labNo">
+   <option value="lab=1">Lab01 Instruments-DC</option>
+   <option value="lab=2">Lab02 Instruments-AC</option>
+   <option value="lab=3">Lab03 Basic Component</option>
+   <option value="lab=4">Lab04 Operational Amplifier</option>
+   <option value="lab=5">Lab05 Simulation-LTspice (Lab at home)</option>
+   <option value="lab=6">Lab06 Diode</option>
+   <option value="lab=7">Lab07 Multivibrator</option>
+   <option value="lab=8">Lab08 DC-DC Converter</option>
+   <option value="lab=9">Lab09 IR Transmitter and Receiver</option>
+  </select><br><br>
+  
+  
+  <p> Experiment status</p>
+  
+	<input type="checkbox" id="exp1" name="exp1" value="exp1=na">
+	<label for="exp1">Experiment1 done</label><br><br>
+	
+	<input type="checkbox" id="exp2" name="exp2" value="exp2=na">
+	<label for="exp2">Experiment2 done</label><br><br>
+	
+	<input type="checkbox" id="exp3" name="exp3" value="exp3=na">
+	<label for="exp3">Experiment3 done</label><br><br>
+	
+	<input type="checkbox" id="exp4" name="exp4" value="exp4=na">
+	<label for="exp4">Experiment4 done</label><br><br>
+	
+	<input type="checkbox" id="exp5" name="exp5" value="exp5=na">
+	<label for="exp5">Experiment5 done</label><br><br>
+	
+	<input type="checkbox" id="exp6" name="exp6" value="exp6=na">
+	<label for="exp6">Experiment6 done</label><br><br>
 
 <script>
-log = ChromeSamples.log;
+function myFunction() {
+	var id = 'exp1';
+	var object = document.getElementById(id);
+	
+	if(object.checked)
+		object.value = id + '=1';
+	else
+		object.value = id + '=na';
 
-if (!("NDEFReader" in window))
-  ChromeSamples.setStatus(
-    "Web NFC is not available.\n" +
-      'Please make sure the "Experimental Web Platform features" flag is enabled on Android.'
-  );
+	id = 'exp2';
+	object = document.getElementById(id);
+	if(object.checked)
+		object.value = id + '=1';
+	else
+		object.value = id + '=na';
+	
+	id = 'exp3';
+	object = document.getElementById(id);
+	if(object.checked)
+		object.value = id + '=1';
+	else
+		object.value = id + '=na';	
+	
+	id = 'exp4';
+	object = document.getElementById(id);
+	if(object.checked)
+		object.value = id + '=1';
+	else
+		object.value = id + '=na';	
+
+	id = 'exp5';
+	object = document.getElementById(id);
+	if(object.checked)
+		object.value = id + '=1';
+	else
+		object.value = id + '=na';
+
+	id = 'exp6';
+	object = document.getElementById(id);
+	if(object.checked)
+		object.value = id + '=1';
+	else
+		object.value = id + '=na';	
+
+		
+	document.getElementById('demo').innerHTML = document.getElementById('labNo').value 
+	                                          + '&' + document.getElementById('exp1').value
+	                                          + '&' + document.getElementById('exp2').value
+											  + '&' + document.getElementById('exp3').value
+											  + '&' + document.getElementById('exp4').value
+											  + '&' + document.getElementById('exp5').value
+											  + '&' + document.getElementById('exp6').value
+	}
 </script>
 
-{% include js_snippet.html filename='index.js' %}
+
+
+
+<button type="button"
+onclick="myFunction()">
+Click me to display first name.</button>
+
+<p id="demo"></p>
+
+
+</body>
+</html>
+
